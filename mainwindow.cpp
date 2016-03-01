@@ -7,6 +7,39 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    P_Com = NULL;
+    P_Com = new comDialog();
+    P_About = NULL;
+    P_About = new aboutDialog();
+
+    fileMenu = new QMenu("文件");
+    helpMenu = new QMenu("帮助");
+
+    fileSaveAction = new QAction("保存", this);
+    fileSaveAction->setShortcut(Qt::CTRL|Qt::Key_S);
+    fileSaveAction->setStatusTip("保存当前接收数据");
+
+    fileQuitAction = new QAction("退出", this);
+    fileQuitAction->setShortcut(Qt::CTRL|Qt::Key_Q);
+    fileQuitAction->setStatusTip("退出程序");
+
+    helpAboutAction = new QAction("关于", this);
+    helpAboutAction->setShortcut(Qt::CTRL|Qt::Key_A);
+    helpAboutAction->setStatusTip("关于应用程序");
+
+    fileMenu->addAction(fileSaveAction);
+    fileMenu->addAction(fileQuitAction);
+    helpMenu->addAction(helpAboutAction);
+
+    menuBar = new QMenuBar(this);
+    menuBar->addMenu(fileMenu);
+    menuBar->addMenu(helpMenu);
+    menuBar->setGeometry(0,0,this->width(),25);
+
+    connect(fileSaveAction, SIGNAL(triggered(bool)), this, SLOT(fileSave()));
+    connect(fileQuitAction, SIGNAL(triggered(bool)), this, SLOT(fileQuit()));
+    connect(helpAboutAction, SIGNAL(triggered(bool)), this, SLOT(helpAbout()));
+
     ui->closeMyComBtn->setEnabled(false);   //开始时，”关闭串口“按钮不可用
     ui->sendMsgBtn->setEnabled(false);      //开始时，”发送数据“按钮不可用
 }
@@ -89,4 +122,19 @@ void MainWindow::on_closeMyComBtn_clicked() //关闭串口按钮 按下 槽函�
 void MainWindow::on_sendMsgBtn_clicked()    //发送数据按钮 按下 槽函数
 {
     myCom->write(ui->sendMsgLineEdit->text().toLatin1());   //以ASCII码形式将行编辑器中的数据写入串口
+}
+
+void MainWindow::fileSave()
+{
+    //save
+}
+
+void MainWindow::fileQuit()
+{
+    this->close();
+}
+
+void MainWindow::helpAbout()
+{
+    P_About->exec();
 }

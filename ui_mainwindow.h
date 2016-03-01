@@ -23,7 +23,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -31,6 +30,9 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *save;
+    QAction *quit;
+    QAction *about;
     QWidget *centralWidget;
     QTextBrowser *textBrowser;
     QWidget *horizontalLayoutWidget;
@@ -61,23 +63,28 @@ public:
     QHBoxLayout *stopBitsLayout;
     QLabel *stopBitsLabel;
     QComboBox *stopBitsComboBox;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QMenuBar *menuBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(505, 362);
+        MainWindow->resize(519, 362);
+        save = new QAction(MainWindow);
+        save->setObjectName(QStringLiteral("save"));
+        quit = new QAction(MainWindow);
+        quit->setObjectName(QStringLiteral("quit"));
+        about = new QAction(MainWindow);
+        about->setObjectName(QStringLiteral("about"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         textBrowser = new QTextBrowser(centralWidget);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        textBrowser->setGeometry(QRect(20, 20, 311, 221));
+        textBrowser->setGeometry(QRect(20, 31, 311, 221));
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(19, 259, 311, 41));
+        horizontalLayoutWidget->setGeometry(QRect(19, 270, 311, 41));
         sendLayout = new QHBoxLayout(horizontalLayoutWidget);
         sendLayout->setSpacing(6);
         sendLayout->setContentsMargins(11, 11, 11, 11);
@@ -101,7 +108,7 @@ public:
 
         horizontalLayoutWidget_2 = new QWidget(centralWidget);
         horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(340, 20, 161, 41));
+        horizontalLayoutWidget_2->setGeometry(QRect(340, 31, 161, 41));
         opencloseLayout = new QHBoxLayout(horizontalLayoutWidget_2);
         opencloseLayout->setSpacing(6);
         opencloseLayout->setContentsMargins(11, 11, 11, 11);
@@ -119,7 +126,7 @@ public:
 
         horizontalLayoutWidget_3 = new QWidget(centralWidget);
         horizontalLayoutWidget_3->setObjectName(QStringLiteral("horizontalLayoutWidget_3"));
-        horizontalLayoutWidget_3->setGeometry(QRect(340, 70, 160, 31));
+        horizontalLayoutWidget_3->setGeometry(QRect(340, 81, 160, 31));
         portNameLayout = new QHBoxLayout(horizontalLayoutWidget_3);
         portNameLayout->setSpacing(6);
         portNameLayout->setContentsMargins(11, 11, 11, 11);
@@ -143,7 +150,7 @@ public:
         portNameLayout->setStretch(1, 30);
         horizontalLayoutWidget_4 = new QWidget(centralWidget);
         horizontalLayoutWidget_4->setObjectName(QStringLiteral("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(340, 100, 160, 31));
+        horizontalLayoutWidget_4->setGeometry(QRect(340, 111, 160, 31));
         baudRateLayout = new QHBoxLayout(horizontalLayoutWidget_4);
         baudRateLayout->setSpacing(6);
         baudRateLayout->setContentsMargins(11, 11, 11, 11);
@@ -164,7 +171,7 @@ public:
         baudRateLayout->setStretch(1, 30);
         horizontalLayoutWidget_5 = new QWidget(centralWidget);
         horizontalLayoutWidget_5->setObjectName(QStringLiteral("horizontalLayoutWidget_5"));
-        horizontalLayoutWidget_5->setGeometry(QRect(340, 130, 160, 31));
+        horizontalLayoutWidget_5->setGeometry(QRect(340, 141, 160, 31));
         dataBitsLayout = new QHBoxLayout(horizontalLayoutWidget_5);
         dataBitsLayout->setSpacing(6);
         dataBitsLayout->setContentsMargins(11, 11, 11, 11);
@@ -185,7 +192,7 @@ public:
         dataBitsLayout->setStretch(1, 30);
         horizontalLayoutWidget_6 = new QWidget(centralWidget);
         horizontalLayoutWidget_6->setObjectName(QStringLiteral("horizontalLayoutWidget_6"));
-        horizontalLayoutWidget_6->setGeometry(QRect(340, 160, 160, 31));
+        horizontalLayoutWidget_6->setGeometry(QRect(340, 171, 160, 31));
         parityLayout = new QHBoxLayout(horizontalLayoutWidget_6);
         parityLayout->setSpacing(6);
         parityLayout->setContentsMargins(11, 11, 11, 11);
@@ -206,7 +213,7 @@ public:
         parityLayout->setStretch(1, 30);
         horizontalLayoutWidget_7 = new QWidget(centralWidget);
         horizontalLayoutWidget_7->setObjectName(QStringLiteral("horizontalLayoutWidget_7"));
-        horizontalLayoutWidget_7->setGeometry(QRect(340, 190, 160, 31));
+        horizontalLayoutWidget_7->setGeometry(QRect(340, 201, 160, 31));
         stopBitsLayout = new QHBoxLayout(horizontalLayoutWidget_7);
         stopBitsLayout->setSpacing(6);
         stopBitsLayout->setContentsMargins(11, 11, 11, 11);
@@ -226,16 +233,16 @@ public:
 
         stopBitsLayout->setStretch(1, 30);
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 505, 23));
-        MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        menuBar = new QMenuBar(MainWindow);
+        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setEnabled(true);
+        menuBar->setGeometry(QRect(0, 0, 519, 23));
+        menuBar->setDefaultUp(true);
+        menuBar->setNativeMenuBar(true);
+        MainWindow->setMenuBar(menuBar);
 
         retranslateUi(MainWindow);
 
@@ -245,6 +252,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        save->setText(QApplication::translate("MainWindow", "\344\277\235\345\255\230", 0));
+        quit->setText(QApplication::translate("MainWindow", "\351\200\200\345\207\272", 0));
+        about->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216", 0));
         sendMsgBtn->setText(QApplication::translate("MainWindow", "\345\217\221\351\200\201\346\225\260\346\215\256", 0));
         openMyComBtn->setText(QApplication::translate("MainWindow", "\346\211\223\345\274\200\344\270\262\345\217\243", 0));
         closeMyComBtn->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255\344\270\262\345\217\243", 0));
