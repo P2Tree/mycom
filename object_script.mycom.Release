@@ -4,13 +4,11 @@ INPUT(
 ./release\qextserialbase.o
 ./release\qextserialport.o
 ./release\win_qextserialport.o
-./release\comdialog.o
 ./release\aboutdialog.o
 ./release\qrc_resource.o
 ./release\moc_mainwindow.o
 ./release\moc_qextserialbase.o
 ./release\moc_qextserialport.o
 ./release\moc_win_qextserialport.o
-./release\moc_comdialog.o
 ./release\moc_aboutdialog.o
 );

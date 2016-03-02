@@ -17,18 +17,15 @@ SOURCES += main.cpp\
     qextserialbase.cpp \
     qextserialport.cpp \
     win_qextserialport.cpp \
-    Forms/comdialog.cpp \
     Forms/aboutdialog.cpp
 
 HEADERS  += mainwindow.h \
     qextserialbase.h \
     qextserialport.h \
     win_qextserialport.h \
-    Forms/comdialog.h \
     Forms/aboutdialog.h
 
 FORMS    += mainwindow.ui \
-    Forms/comdialog.ui \
     Forms/aboutdialog.ui
 
 RESOURCES += \
