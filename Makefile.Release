@@ -17,13 +17,13 @@ CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -frtti -Wall -Wextra -fexce
 INCPATH       = -I. -IC:\Qt\Qt5.5.1\5.5\mingw492_32\include -IC:\Qt\Qt5.5.1\5.5\mingw492_32\include\QtWidgets -IC:\Qt\Qt5.5.1\5.5\mingw492_32\include\QtGui -IC:\Qt\Qt5.5.1\5.5\mingw492_32\include\QtANGLE -IC:\Qt\Qt5.5.1\5.5\mingw492_32\include\QtCore -Irelease -I. -IC:\Qt\Qt5.5.1\5.5\mingw492_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib -lqtmain -lshell32 -lQt5Widgets -lQt5Gui -lQt5Core 
+LIBS        =        -lmingw32 -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib -lqtmain -lshell32 -lQt5Widgets -lQt5Gui -lQt5Core release\icon_res.o 
 QMAKE         = C:\Qt\Qt5.5.1\5.5\mingw492_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\icon_res.o
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -103,8 +103,11 @@ DESTDIR_TARGET = release\mycom.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_aboutdialog.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_mainwindow.h ui_aboutdialog.h $(OBJECTS) release/icon_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.mycom.Release  $(LIBS)
+
+release/icon_res.o: icon.rc
+	windres -i icon.rc -o release\icon_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ "CONFIG+=debug" -o Makefile.Release mycom.pro
@@ -116,6 +119,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.o release\mainwindow.o release\qextserialbase.o release\qextserialport.o release\win_qextserialport.o release\aboutdialog.o release\qrc_resource.o release\moc_mainwindow.o release\moc_qextserialbase.o release\moc_qextserialport.o release\moc_win_qextserialport.o release\moc_aboutdialog.o
+	-$(DEL_FILE) release\icon_res.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -257,6 +261,7 @@ release/moc_mainwindow.cpp: C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMai
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qaction.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/QActionEvent \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMenu \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmenu.h \
 		mainwindow.h
@@ -702,6 +707,7 @@ release/main.o: main.cpp mainwindow.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qaction.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/QActionEvent \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMenu \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmenu.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QApplication \
@@ -834,6 +840,7 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qaction.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/QActionEvent \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QMenu \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qmenu.h \
 		ui_mainwindow.h \
@@ -1191,7 +1198,52 @@ release/aboutdialog.o: Forms/aboutdialog.cpp Forms/aboutdialog.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
-		ui_aboutdialog.h
+		ui_aboutdialog.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/QVariant \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QAction \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qaction.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qicon.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QApplication \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qinputmethod.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/QTextBrowser \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtextbrowser.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtWidgets/qtextedit.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextdocument.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.5.1/5.5/mingw492_32/include/QtGui/qpen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\aboutdialog.o Forms\aboutdialog.cpp
 
 release/qrc_resource.o: release/qrc_resource.cpp 

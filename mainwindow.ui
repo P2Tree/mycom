@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>519</width>
-    <height>362</height>
+    <height>366</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>31</y>
+      <y>40</y>
       <width>311</width>
       <height>221</height>
      </rect>
@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>19</x>
-      <y>270</y>
+      <y>279</y>
       <width>311</width>
       <height>41</height>
      </rect>
@@ -62,7 +62,7 @@
     <property name="geometry">
      <rect>
       <x>340</x>
-      <y>31</y>
+      <y>40</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -88,271 +88,40 @@
     <property name="geometry">
      <rect>
       <x>340</x>
-      <y>81</y>
-      <width>160</width>
-      <height>31</height>
+      <y>80</y>
+      <width>161</width>
+      <height>41</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="portNameLayout" stretch="0,30">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
+    <layout class="QHBoxLayout" name="pauseclearLayout">
      <item>
-      <widget class="QLabel" name="portNameLabel">
-       <property name="font">
-        <font>
-         <family>Adobe Arabic</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
+      <widget class="QPushButton" name="pauseBtn">
        <property name="text">
-        <string>串口：</string>
+        <string>暂停</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="portNameComboBox">
-       <item>
-        <property name="text">
-         <string>COM1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>COM2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>COM3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>COM4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>COM5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>COM6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>COM7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>COM8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>COM9</string>
-        </property>
-       </item>
+      <widget class="QPushButton" name="clearBtn">
+       <property name="text">
+        <string>清空</string>
+       </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_4">
+   <widget class="QLabel" name="comStatusLabel">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>111</y>
-      <width>160</width>
-      <height>31</height>
+      <x>420</x>
+      <y>300</y>
+      <width>71</width>
+      <height>20</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="baudRateLayout" stretch="0,30">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
-     <item>
-      <widget class="QLabel" name="baudRateLabel">
-       <property name="font">
-        <font>
-         <family>Adobe Arabic</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>波特率：</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="baudRateComboBox">
-       <item>
-        <property name="text">
-         <string>9600</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>115200</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_5">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>141</y>
-      <width>160</width>
-      <height>31</height>
-     </rect>
+    <property name="text">
+     <string>串口已开启！</string>
     </property>
-    <layout class="QHBoxLayout" name="dataBitsLayout" stretch="0,30">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
-     <item>
-      <widget class="QLabel" name="dataBitsLabel">
-       <property name="font">
-        <font>
-         <family>Adobe Arabic</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>数据位：</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="dataBitsComboBox">
-       <item>
-        <property name="text">
-         <string>8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>7</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_6">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>171</y>
-      <width>160</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="parityLayout" stretch="0,30">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
-     <item>
-      <widget class="QLabel" name="parityLabel">
-       <property name="font">
-        <font>
-         <family>Adobe Arabic</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>校验位：</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="parityComboBox">
-       <item>
-        <property name="text">
-         <string>无校验</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>奇校验</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>偶校验</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_7">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>201</y>
-      <width>160</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="stopBitsLayout" stretch="0,30">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
-     <item>
-      <widget class="QLabel" name="stopBitsLabel">
-       <property name="font">
-        <font>
-         <family>Adobe Arabic</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>停止位：</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="stopBitsComboBox">
-       <item>
-        <property name="text">
-         <string>1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>1.5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>2</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

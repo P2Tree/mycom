@@ -6,6 +6,7 @@ aboutDialog::aboutDialog(QWidget *parent) :
     ui(new Ui::aboutDialog)
 {
     ui->setupUi(this);
+    setWindowTitle("关于");
 }
 
 aboutDialog::~aboutDialog()
