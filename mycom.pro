@@ -16,11 +16,19 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     qextserialbase.cpp \
     qextserialport.cpp \
-    win_qextserialport.cpp
+    win_qextserialport.cpp \
+    Forms/aboutdialog.cpp
 
 HEADERS  += mainwindow.h \
     qextserialbase.h \
     qextserialport.h \
-    win_qextserialport.h
+    win_qextserialport.h \
+    Forms/aboutdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    Forms/aboutdialog.ui
+
+RESOURCES += \
+    resource.qrc
+
+RC_FILE += icon.rc
